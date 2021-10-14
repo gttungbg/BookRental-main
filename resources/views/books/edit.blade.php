@@ -14,10 +14,10 @@
 
 @section('content')
     <div class="content-wrapper">
-    @include('partials.content-header',['name' => 'Books ','key'=>'Add'])
+    @include('partials.content-header',['name' => 'Books ','key'=>'Edit'])
 
     <!-- Main content -->
-        <form action="{{route('books.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('books.update',['id'=>$books->id])}}" method="post" enctype="multipart/form-data">
             @csrf
         <div class="content">
             <div class="container-fluid">
@@ -27,13 +27,13 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">isbn</label>
                             <input type="text" class="form-control" id=""
-                                   placeholder="isbn" name="isbn"><br>
+                                   placeholder="isbn" name="isbn"  value="{{$books->isbn}}"><br>
                         </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Title</label>
                                 <input type="text" class="form-control" id=""
-                                       placeholder="tên danh mục" name="title"><br>
+                                       placeholder="tên danh mục" name="title" value="{{$books->title}}"><br>
                             </div>
 
                             <div class="form-group">
@@ -48,57 +48,72 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Slug</label>
+                                <label for="exampleInputEmail1" >Slug</label>
                                 <input type="text" class="form-control" id=""
-                                    placeholder="tên danh mục" name="slug"><br>
+                                    placeholder="tên danh mục" name="slug" value="{{$books->slug}}"><br>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Size</label>
                                 <input type="text" class="form-control" id=""
-                                       placeholder="mô tả" name="size">
+                                       placeholder="mô tả" name="size" value="{{$books->size}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">num_of_page</label>
                                 <input type="text" class="form-control" id=""
-                                       placeholder="mô tả" name="numOfPage">
+                                       placeholder="mô tả" name="numOfPage" value="{{$books->num_of_page}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">quantity</label>
                                 <input type="text" class="form-control" id=""
-                                       placeholder="mô tả" name="quantity">
+                                       placeholder="mô tả" name="quantity"  value="{{$books->quantity}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">publish_date</label>
                                 <input type="date" class="form-control" id=""
-                                       placeholder="mô tả" name="publish_date" >
+                                       placeholder="mô tả" name="publish_date"  value="{{$books->publish_date}}" >
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">price</label>
                                 <input type="text" class="form-control" id=""
-                                       placeholder="mô tả" name="price">
+                                       placeholder="mô tả" name="price" value="{{$books->price}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">view_count</label>
                                 <input type="text" class="form-control" id=""
-                                       placeholder="mô tả" name="view_count">
+                                       placeholder="mô tả" name="view_count"  value="{{$books->view_count}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Images avata</label>
                                 <input type="file" class="form-control-file" id=""
                                        placeholder="mô tả" name="feature_image_path">
+                                       <div class="col-md-12">
+                                           <div class="row">
+                                               <img src="{{$books->feature_image_path}}" alt="">
+                                           </div>
+                                       </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Images details</label>
                                 <input type="file" multiple class="form-control-file" id=""
                                        placeholder="mô tả" name="image_path[]">
+                                       <div class="col-md-12">
+                                           <div class="row">
+                                               @foreach($books->booksImage as $booksImageItem)
+                                                   <div class="col-md-3">
+                                                        <img  class="image_detail" src="{{$booksImageItem->image_path}}" alt="">
+                                                   </div>
+                                                  
+                                               @endforeach
+                                           </div>
+                                       </div>
                             </div>
 
                             <div class="form-group">
@@ -111,13 +126,21 @@
 
                             <div class="form-group">
                                 <label>Tên tác giả</label>
-                            <select  name="authorsIds[]" class="form-control tags_select_choose" multiple="multiple"></select>
+                            <select  name="authorsIds[]" class="form-control tags_select_choose" multiple="multiple">
+                                @foreach($books->authors as $ItemAuthors)
+
+                                <option value="{{$ItemAuthors->id}}" selected>
+                                      {{$ItemAuthors->name}}
+                                </option>
+
+                                @endforeach
+                            </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Date_of_birth</label>
                                 <input type="date" class="form-control" id=""
-                                       placeholder="date_of_birth" name="date_of_birth">
+                                       placeholder="date_of_birth" name="date_of_birth" value="{{$books->date_of_birth}}">
                             </div>
 
 
@@ -127,7 +150,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
                             <textarea class="form-control tinymce_editor_init" rows="8"
-                                      name="contents" required="required">
+                                      name="contents" required="required" value="{{$books->description}}">
                                 </textarea>
                         </div>
                     </div>

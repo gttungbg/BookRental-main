@@ -51,51 +51,63 @@ Route::prefix('admin')->group(function (){
         ]);
     });
 //add publishers
-    Route::prefix('publishers')->group(function () {
-        Route::get('/',[
-            'as' => 'publishers.index',
-            'uses' =>'publishersContronller@index'
-        ]);
-        Route::get('/create',[
-            'as' => 'publishers.create',
-            'uses' =>'publishersContronller@create'
-        ]);
-        Route::post('/store',[
-            'as' => 'publishers.store',
-            'uses' =>'publishersContronller@store'
-        ]);
-        Route::get('/edit/{id}',[
-            'as' => 'publishers.edit',
-            'uses' =>'publishersContronller@edit'
-        ]);
-        Route::post('/update/{id}',[
-            'as' => 'publishers.update',
-            'uses' =>'publishersContronller@update'
-        ]);
-        Route::get('/delete/{id}',[
-            'as' => 'publishers.delete',
-            'uses' =>'publishersContronller@delete'
-        ]);
+Route::prefix('publishers')->group(function () {
+    Route::get('/',[
+        'as' => 'publishers.index',
+        'uses' =>'PublishersContronller@index'
+    ]);
+    Route::get('/create',[
+        'as' => 'publishers.create',
+        'uses' =>'PublishersContronller@create'
+    ]);
+    Route::post('/store',[
+        'as' => 'publishers.store',
+        'uses' =>'PublishersContronller@store'
+    ]);
+    Route::get('/edit/{id}',[
+        'as' => 'publishers.edit',
+        'uses' =>'PublishersContronller@edit'
+    ]);
+    Route::post('/update/{id}',[
+        'as' => 'publishers.update',
+        'uses' =>'PublishersContronller@update'
+    ]);
+    Route::get('/delete/{id}',[
+        'as' => 'publishers.delete',
+        'uses' =>'PublishersContronller@delete'
+    ]);
 
 
-    });
+});
 //add books
-    Route::prefix('books')->group(function () {
-        Route::get('/',[
-            'as' => 'books.index',
-            'uses' =>'AdminBooksController@index'
-        ]);
+Route::prefix('books')->group(function () {
+    Route::get('/',[
+        'as' => 'books.index',
+        'uses' =>'AdminBooksController@index'
+    ]);
 
-        Route::get('/create',[
-            'as' => 'books.create',
-            'uses' =>'AdminBooksController@create'
-        ]);
+    Route::get('/create',[
+        'as' => 'books.create',
+        'uses' =>'AdminBooksController@create'
+    ]);
 
-        Route::post('/store',[
-            'as' => 'books.store',
-            'uses' =>'AdminBooksController@store'
-        ]);
-    });
+    Route::post('/store',[
+        'as' => 'books.store',
+        'uses' =>'AdminBooksController@store'
+    ]);
+    Route::get('/edit/{id}',[
+        'as' => 'books.edit',
+        'uses' =>'AdminBooksController@edit'
+    ]);
+    Route::post('/update/{id}',[
+        'as' => 'books.update',
+        'uses' =>'AdminBooksController@update'
+    ]);
+    Route::get('/delete/{id}',[
+        'as' => 'books.delete',
+        'uses' =>'AdminBooksController@delete'
+    ]);
+});
     //add Authors
     Route::prefix('authors')->group(function () {
         Route::get('/',[

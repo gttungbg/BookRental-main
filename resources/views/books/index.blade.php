@@ -5,6 +5,17 @@
 
 @endsection
 
+@section('css')
+  <link rel="stylesheet" href="{{asset('admins/books/index/list.css')}}">
+
+@endsection
+
+@section('js')
+   
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{asset('admins/books/index/list.js')}}"></script>
+@endsection
+
 
 @section('content')
     <div class="content-wrapper">
@@ -23,7 +34,8 @@
                             <tr>
                                 <th scope="col">Isbn</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Description</th>
+                                <th scope="col">publisher_id</th>
+                                <th scope="col">slug</th>
                                 <th scope="col">Size</th>
                                 <th scope="col">Num_of_page</th>
                                 <th scope="col">Quantity</th>
@@ -35,31 +47,37 @@
                             </tr>
                             </thead>
                             <tbody>
+                                @foreach($books as $bookList)
 
                                 <tr>
-                                    <th scope="row">001</th>
-                                    <td>Sach Tieng Anh</td>
-                                    <td>Danh cho THPT</td>
-                                    <td>10*20cm</td>
-                                    <td>260</td>
-                                    <td>200</td>
-                                    <td>20/02/1999</td>
-                                    <td>140</td>
-                                    <td>240</td>
-                                    <td>?</td>
+                                    <th scope="row">{{$bookList->isbn}}</th>
+                                    <td>{{$bookList->title}}</td>
+                                    <td>{{$bookList->publisher_id}}</td>
+                                    <td>{{$bookList->slug}}</td>
+                                    <td>{{$bookList->size}}</td>
+                                    <td>{{$bookList->num_of_page}}</td>
+                                    <td>{{$bookList->quantity}}</td>
+                                    <td>{{$bookList->publish_date}}</td>
+                                    <td>{{number_format($bookList->price)}}</td>
+                                    <td>{{$bookList->view_count}}</td>
+                                    
                                     <td>
-                                        <a href=""
+                                       <img class="books_image" src="{{$bookList->feature_image_path}}" alt="" width="100" height="100"> 
+                                    </td>
+
+                                    <td>
+                                        <a href="{{route('books.edit',['id'=>$bookList->id])}}"
                                            class="btn btn-default">Edit</a>
-                                        <a href=""
-                                           class="btn btn-danger">Delete</a>
+                                        <a href="" data-url="{{route('books.delete',['id'=>$bookList->id])}}"
+                                           class="btn btn-danger action_delete">Delete</a>
                                     </td>
                                 </tr>
-
+                             @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="col-md-12">
-{{--                        {{ $categories->links('pagination::bootstrap-4') }}--}}
+                     {{ $books->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
 
@@ -68,4 +86,3 @@
 
     </div>
 @endsection
-
