@@ -37,8 +37,8 @@
                 <td>{{ $comment->comment}}</td>
                 <td>{{ $comment->member_rate}}</td>
                 <td>
-                    <a href="{{route('success.comment',$comment->id)}}"><i class="fas fa-check-circle" style="color: green"></i></a>
-                    <a href="{{route('delete.comment',$comment->id)}}"><i class="fa fa-trash tacvu" style="color: red"></i></a>
+                    <a href="{{route('success.comment',$comment->id)}}"><i class="btn btn-primary"></i></a>
+                    <a href="{{route('delete.comment',$comment->id)}}"><i class="btn btn-primary">Delete</i></a>
                 </td>
                 </tr>
                 @endforeach
