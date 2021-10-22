@@ -1,33 +1,38 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Authors;
-use App\Models\publishers;
+use App\Models\Publishers;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Author;
+use App\Http\Requests\Author\AuthorRequest;
 
 class AdminAuthorsController extends Controller
 {
     private $authors;
+
     public function __construct(Authors $authors)
     {
         $this->authors=$authors;
 
     }
     public function index(){
-        $authors = $this->authors->paginate(5);;
+        $authors = $this->authors->paginate(5);
         return view('authors.index',compact('authors'));
     }
     public function create(){
         return view('authors.add');
     }
-    public function store(Request $request){
-       $this->authors::create([
-              'name' =>$request->name,
-              'date_of_birth'=>$request->date_of_birth
-        ]);
+    public function store(AuthorRequest $request){
+
+        $this->authors->create($request->all());
+//        $this->authors->create([
+//              'name' =>$request->name,
+//              'date_of_birth'=>$request->date_of_birth
+//        ]);
         return redirect()->route('authors.index');
     }
     public function edit($id){

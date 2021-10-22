@@ -17,13 +17,18 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Authors Name</label>
                                 <input type="text" class="form-control" id=""
-                                       placeholder="tên tác giả" name="name" required=""><br>
-
+                                       placeholder="tên tác giả" name="name" value="{{old('name')}}"><br>
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Date_of_birth</label>
-                                <input type="text" class="form-control" id=""
-                                       placeholder="Date_of_birth" name="date_of_birth" required=""><br>
+                                <input type="date" class="form-control" id=""
+                                       placeholder="Date_of_birth" name="date_of_birth" value="{{ old('date_of_birth')}}"><br>
+                                @error('date_of_birth')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
 
                             </div>
 

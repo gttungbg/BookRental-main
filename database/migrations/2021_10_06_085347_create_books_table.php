@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 class CreateBooksTable extends Migration
 {
     /**
@@ -28,6 +27,8 @@ class CreateBooksTable extends Migration
             $table->integer('price');
             $table->integer('view_count');
             $table->integer('creator_id');
+            $table->string('feature_image_path');
+            $table->string('feature_image_name')->nullable();
             $table->softDeletes();
 
             $table->timestamps();

@@ -43,7 +43,8 @@
 			{{Session::get('suscess')}}
 		</div>
 	@endif
-	<form action="{{route('login')}}" method="post">
+	<form action="{{route('post.login')}}" method="post">
+    @csrf
         <div class="input-group mb-3">
           <input type="text" name="email" class="form-control" placeholder="Email">
           <div class="input-group-append">

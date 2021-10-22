@@ -22,7 +22,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Date_of_birth</label>
-                                <input type="text" class="form-control" id=""
+                                <input type="date" class="form-control" id=""
                                        placeholder="Date_of_birth" value="{{$data->date_of_birth}}"  name="date_of_birth" required=""><br>
 
                             </div>

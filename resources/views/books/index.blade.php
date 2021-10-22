@@ -6,12 +6,12 @@
 @endsection
 
 @section('css')
-  <link rel="stylesheet" href="{{asset('admins/books/index/list.css')}}">
+  <link rel="stylesheet" href="{{asset('../admins/books/index/list.css')}}">
 
 @endsection
 
 @section('js')
-   
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{asset('admins/books/index/list.js')}}"></script>
 @endsection
@@ -60,9 +60,9 @@
                                     <td>{{$bookList->publish_date}}</td>
                                     <td>{{number_format($bookList->price)}}</td>
                                     <td>{{$bookList->view_count}}</td>
-                                    
+
                                     <td>
-                                       <img class="books_image" src="{{$bookList->feature_image_path}}" alt="" width="100" height="100"> 
+                                       <img class="books_image" src="{{$bookList->feature_image_path}}" alt="" width="100" height="100">
                                     </td>
 
                                     <td>

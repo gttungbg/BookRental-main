@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '6e370801b130adeca3d7b8125c84cd872e225778',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -413,12 +413,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '6e370801b130adeca3d7b8125c84cd872e225778',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -1284,12 +1284,14 @@
             'dev_requirement' => false,
         ),
         'unisharp/laravel-filemanager' => array(
-            'pretty_version' => 'v2.2.0',
-            'version' => '2.2.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../unisharp/laravel-filemanager',
-            'aliases' => array(),
-            'reference' => '34202590a88ecfc598c6dc70dae8b306710d4df2',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'reference' => '608acbbea3d8ef07e34955b8d0014025f06f1311',
             'dev_requirement' => false,
         ),
         'vlucas/phpdotenv' => array(

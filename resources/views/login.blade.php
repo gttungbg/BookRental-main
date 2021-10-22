@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('login/assets/css/login.css')}}">
+    <link rel="stylesheet" href="{{asset('../login/assets/css/login.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
           integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -43,7 +43,7 @@
 
             <div class="form-group">
                 <span>Dont have a account ?</span>
-                <a href="{{route('get.register')}}" class="register">Register account</a>
+                <a href="" class="register">Register account</a>
             </div>
 
         </form>
@@ -52,7 +52,7 @@
 
 </div>
 
-<script src="{{asset('login/assets/javascript/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('../login/assets/javascript/jquery-3.6.0.min.js')}}"></script>
 </body>
 
 </html>

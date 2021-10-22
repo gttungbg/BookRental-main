@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePublishersTable extends Migration
+class CreateBookImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePublishersTable extends Migration
      */
     public function up()
     {
-        Schema::create('publishers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->softDeletes();
+        Schema::create('book_images', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('url')->nullable();
+            $table->string('title');
+            $table->integer('book_id');
+            $table->string('image_path');
             $table->timestamps();
         });
     }
@@ -29,7 +30,6 @@ class CreatePublishersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publishers');
-       
+        Schema::dropIfExists('book_images');
     }
 }

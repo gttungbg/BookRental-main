@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','AdminController@loginAdmin');
 Route::post('/','AdminController@postloginAdmin');
 
+
 Route::get('home', function () {
     return view('home');
 });
-//add category
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+//add category khong dc xoa
 Route::prefix('admin')->group(function (){
     Route::prefix('category')->group(function () {
         Route::get('/',[
@@ -112,29 +118,29 @@ Route::prefix('books')->group(function () {
     Route::prefix('authors')->group(function () {
         Route::get('/',[
             'as' => 'authors.index',
-            'uses' =>'AdminAuthorsController@index'
+            'uses' =>'Admin\AdminAuthorsController@index'
         ]);
 
         Route::get('/create',[
             'as' => 'authors.create',
-            'uses' =>'AdminAuthorsController@create'
+            'uses' =>'Admin\AdminAuthorsController@create'
         ]);
 
         Route::post('/authors',[
             'as' => 'authors.store',
-            'uses' =>'AdminAuthorsController@store'
+            'uses' =>'Admin\AdminAuthorsController@store'
         ]);
         Route::get('/edit/{id}',[
             'as' => 'authors.edit',
-            'uses' =>'AdminAuthorsController@edit'
+            'uses' =>'Admin\AdminAuthorsController@edit'
         ]);
         Route::post('/update/{id}',[
             'as' => 'authors.update',
-            'uses' =>'AdminAuthorsController@update'
+            'uses' =>'Admin\AdminAuthorsController@update'
         ]);
         Route::get('/delete/{id}',[
             'as' => 'authors.delete',
-            'uses' =>'AdminAuthorsController@delete'
+            'uses' =>'Admin\AdminAuthorsController@delete'
         ]);
 
     });
@@ -142,13 +148,13 @@ Route::prefix('books')->group(function () {
 
 });
 
+
 // Route đăng nhập
 Route::group(['prefix' => 'auth'], function($route) {
     $route->get('login',[App\Http\Controllers\Admin\Users\LoginController::class,'index'])->name('login');
-    $route->post('login',[App\Http\Controllers\Admin\Users\LoginController::class,'store']);
+    $route->post('login',[App\Http\Controllers\Admin\Users\LoginController::class,'store'])->name('post.login');
     $route->get('register',[App\Http\Controllers\Admin\Users\LoginController::class,'getRegister'])->name('get.register');
 	$route->post('register',[App\Http\Controllers\Admin\Users\LoginController::class,'postRegister'])->name('post.register');
-    
 
 });
 // Route trang chu
@@ -157,7 +163,7 @@ Route::get('/admin/main',[App\Http\Controllers\Admin\MainController::class,'inde
 
 });
 // Admin
-		Route::group(['prefix'=>'admin'],function(){ //middle ware 
+		Route::group(['prefix'=>'admin'],function(){ //middle ware
 //dashboard
     	Route::group(['prefix'=>'dashboard'],function(){
       	Route::get('mud/index',[App\Http\Controllers\Admin\Users\LoginController::class,'dashboard'])->name('dashboard');

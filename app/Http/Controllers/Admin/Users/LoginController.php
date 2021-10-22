@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin\Users;
 
+use App\Events\LoginHistory;
 use Auth;
 use Session;
 use App\Http\Controllers\Controller;
+use App\Models\LogHistory;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Session as FacadesSession;
+
 //use App\Http\Controllers\Admin\Users;
 
 class LoginController extends Controller
@@ -46,12 +51,14 @@ class LoginController extends Controller
 
         // Login process
         $postData = ['email' => $email, 'password' => $password];
-        $attempt = Auth::attempt($postData);
+        $attempt = FacadesAuth::attempt($postData);
 
         if ($attempt) {
-            return redirect('/admin/main');
+            // $loginHi = new LogHistory();
+            // event(new LoginHistory($loginHi));
+            return redirect( route('main'));
         } else {
-            Session::flash('error', "Email hoặc Passwork không đúng");
+            FacadesSession::flash('error', "Email hoặc Passwork không đúng");
             return redirect()->back();
         }
     }
@@ -99,6 +106,12 @@ class LoginController extends Controller
  public function dashboard()
     {
         return view('admin.dashboard.index');
+    }
+
+    public function logout()
+    {
+        FacadesAuth::logout();
+        return redirect()->route('login');
     }
 
 }

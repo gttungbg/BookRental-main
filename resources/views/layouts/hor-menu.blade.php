@@ -16,10 +16,10 @@
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="images/logo-sm-dark.png" alt="" height="20">
+                        <img src="../images/logo-sm-dark.png" alt="" height="20">
                     </span>
                     <span class="logo-lg">
-                        <img src="images/logo-light.png" alt="" height="18">
+                        <img src="../images/logo-light.png" alt="" height="18">
                     </span>
                 </a>
             </div>

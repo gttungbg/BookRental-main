@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 use App\Models\Borrow;
 use App\Models\BorrowDetail;
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class BorrowController extends Controller
     public function __construct(Borrow $borrow)
     {
         $this->borrow = $borrow;
-        
+
     }
 
     public function index()

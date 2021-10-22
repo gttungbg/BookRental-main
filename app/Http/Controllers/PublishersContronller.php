@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Components\Recusive;
+// use App\Components\Recusive;
 use App\Models\Publishers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\Publishers\CreatePublisherRequest;
 
 class PublishersContronller extends Controller
 {
@@ -25,7 +26,7 @@ class PublishersContronller extends Controller
         return view('publishers.add');
     }
 
-    public function store(Request $request){
+    public function store(CreatePublisherRequest $request){
 
         $this->publishers->create([
             'name'=>$request->name,

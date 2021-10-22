@@ -8115,17 +8115,17 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "v2.2.0",
-            "version_normalized": "2.2.0.0",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "34202590a88ecfc598c6dc70dae8b306710d4df2"
+                "reference": "608acbbea3d8ef07e34955b8d0014025f06f1311"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/34202590a88ecfc598c6dc70dae8b306710d4df2",
-                "reference": "34202590a88ecfc598c6dc70dae8b306710d4df2",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/608acbbea3d8ef07e34955b8d0014025f06f1311",
+                "reference": "608acbbea3d8ef07e34955b8d0014025f06f1311",
                 "shasum": ""
             },
             "require": {
@@ -8148,7 +8148,8 @@
                 "ext-gd": "to use GD library based image processing.",
                 "ext-imagick": "to use Imagick based image processing."
             },
-            "time": "2020-11-16T10:51:46+00:00",
+            "time": "2021-10-05T14:52:55+00:00",
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -8191,7 +8192,7 @@
             ],
             "support": {
                 "issues": "https://github.com/UniSharp/laravel-filemanager/issues",
-                "source": "https://github.com/UniSharp/laravel-filemanager/tree/v2.2.0"
+                "source": "https://github.com/UniSharp/laravel-filemanager/tree/master"
             },
             "install-path": "../unisharp/laravel-filemanager"
         },

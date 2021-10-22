@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BookImages extends Migration
+class CreateCommentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class BookImages extends Migration
      */
     public function up()
     {
-        Schema::create('book_images', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('url')->nullable();
-            $table->string('title');
-            $table->integer('book_id');
+        Schema::create('comment', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('user_id');
+            $table->string('book_id');
+            $table->string('comment');
+            $table->softDeletes();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -29,6 +31,6 @@ class BookImages extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('comment');
     }
 }
