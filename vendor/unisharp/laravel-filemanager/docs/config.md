@@ -2,37 +2,94 @@
 
 ## Routing:
 
-| Key                  | Type    | Description                                                                                                  |
-|----------------------|---------|--------------------------------------------------------------------------------------------------------------|
-| use\_package\_routes | boolean | Use routes from package or not. If false, you will need to define routes to all controllers of this package. |
-| middlewares          | array   | Middlewares to be applied to default routes. For laravel 5.1 and before, remove 'web' from the array.        |
-| url_prefix           | string  | The url prefix to this package. Change it if necessary.                                                      |
+### use\_package\_routes
+
+* type: `boolean`
+* default: `true`
+
+Use default routes or not. You will need to define routes to all controllers of this package if this is set to `false`.
 
 
 ## Multi-User Mode:
 
-| Key                  | Type    | Description                                                                                    |
-|----------------------|---------|------------------------------------------------------------------------------------------------|
-| allow\_multi\_user   | boolean | If true, private folders will be created for each signed-in user.                              |
-| allow\_share\_folder | boolean | If true, share folder will be created.                                                         |
-| user_field           | string  | Private folders will be named by this. Can receive column name of `users` table or class name. |
+### allow\_private\_folder
 
-### If you want to name private folders other than columns of users table, follow these steps:
-1. Run `php artisan vendor:publish --tag=lfm_handler`.
-2. Fill `App\Handler\ConfigHandler::class` into `user_field`.
-3. Edit `userField()` in the `App\Handler\ConfigHandler`
+* type: `boolean`
+* default: `true`
+
+Only the owner(each signed-in user) of the private can upload and manage files within. Set to `false` to turn this feature off.
+
+### private\_folder\_name
+
+* type: `string`
+* default: user id
+
+Privates folders for each user will be named by this config. Default to user id.
+
+To change the behavior:
+
+1. run `php artisan publish tag="lfm_handler"`
+2. rewrite `userField` function in App\Handler\ConfigHandler class
+3. set value of this config to App\Handler\ConfigHandler::class
+
+### allow\_shared\_folder
+
+* type: `boolean`
+* default: `true`
+
+### shared\_folder\_name
+
+* type: `string`
+* default: `"shares"`
+
+Flexible way to customize client folders accessibility.
+
+If you want to customize client folders:
+
+1. run `php artisan publish tag="lfm_handler"`
+2. rewrite `userField` function in `App\Handler\ConfigHandler` class
+3. set value of this config to `App\Handler\ConfigHandler::class`
+
+All users can upload and manage files within shared folders. Set to `false` to turn this feature off.
 
 
-## Working Directory:
+## Folder Categories
 
-| Key                  | Type   | Description                                                                                                                                                                     |
-|----------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| base_directory       | string | Which folder to store files in project, fill in 'public', 'resources', 'storage' and so on. Does not support path relative path like `../public_html` or `public/upload/user/`. |
-| images\_folder\_name | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
-| files\_folder\_name  | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
-| shared\_folder\_name | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
-| thumb\_folder\_name  | string | Does not support path relative path like `../public_html` or `public/upload/user/`.                                                                                             |
+### folder\_categories
 
+* type: `array` (nested)
+* default: 
+
+```
+'folder_categories'        => [
+    'file'  => [
+        'folder_name'  => 'files',
+        'startup_view' => 'list',
+        'max_size'     => 50000, // size in KB
+        'valid_mime'   => [
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+            'image/gif',
+            'application/pdf',
+            'text/plain',
+        ],
+    ],
+    'image' => [
+        'folder_name'  => 'photos',
+        'startup_view' => 'grid',
+        'max_size'     => 50000, // size in KB
+        'valid_mime'   => [
+            'image/jpeg',
+            'image/pjpeg',
+            'image/png',
+            'image/gif',
+        ],
+    ],
+],
+```
+
+The default config creates two folder categories, `file` and `image`, each operates independently. Files uploaded by users will be placed under one of these folder categories, depend on which is configured  with your WYSIWYG editor or stand-alone upload button.
 
 ## Startup Views:
 

@@ -144,7 +144,38 @@ Route::prefix('books')->group(function () {
         ]);
 
     });
+    //add users
+    Route::prefix('user')->group(function () {
+        Route::get('/',[
+            'as' => 'user.index',
+            'uses' =>'AdminUsersController@index'
+        ]);
 
+        Route::get('/create',[
+            'as' => 'user.create',
+            'uses' =>'AdminUsersController@create'
+        ]);
+        Route::post('/store',[
+            'as' => 'user.store',
+            'uses' =>'AdminUsersController@store'
+        ]);
+        //edit
+        Route::get('/edit/{id}',[
+            'as' => 'user.edit',
+            'uses' =>'AdminUsersController@edit'
+        ]);
+
+        Route::post('/update/{id}',[
+            'as' => 'user.update',
+            'uses' =>'AdminUsersController@update'
+        ]);
+        //delete
+        Route::get('/delete/{id}',[
+            'as' => 'user.delete',
+            'uses' =>'AdminUsersController@delete'
+        ]);
+
+    });
 
 });
 

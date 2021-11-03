@@ -3,6 +3,9 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use  League\CommonMark\Extension\Footnote\Event;
+use App\Events\logHistory;
+use App\Listeners\storeUserLoginHistory;
 
 class LoginRequest extends FormRequest
 {
@@ -13,7 +16,21 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $this->ensureIsNotRateLimited();
+
+        if (! Auth::attempt($this->only('email', 'password'), $this->filled('remember'))) {
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
+        }
+
+        $user = Auth::user();
+
+        event(new logHistory($user));
+
+        RateLimiter::clear($this->throttleKey());
     }
 
     /**

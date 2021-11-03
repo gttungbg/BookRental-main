@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $this->validate($request,
           [
             'name'=>'required|max:255',
@@ -55,7 +55,7 @@ class UserController extends Controller
             'password.min'=>'Mật khẩu phải trên 6 ký tự',
             'password.max'=>'Mật khẩu không được quá 30 ký tự',
             'password.required'=>'Password không được để trống',
-            
+
           ]);
         $user = new User;
         $user->name = $request->name;
@@ -93,7 +93,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $this->validate($request,
           [
             'name'=>'required|max:255',
@@ -117,7 +117,7 @@ class UserController extends Controller
             'password.required'=>'Password không được để trống',
             'passwordAgain.required' => 'Bạn chưa nhập lại mật khẩu',
             'passwordAgain.same' => 'Mật khẩu nhập lại chưa đúng'
-            
+
           ]);
 
         $user = User::find($id);
@@ -144,19 +144,19 @@ class UserController extends Controller
     }
     public function search(Request $request)
     {
-      if($request->ajax()){ 
+      if($request->ajax()){
         $output ='';
         $users = DB::table('users')->where('name', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('email', 'LIKE', '%' . $request->search . '%')
                         ->get();
         if($users){
           $stt = 1;
-          foreach ($users as $key => $user) {  
+          foreach ($users as $key => $user) {
             $output .= '<tr>
               <th><input type="checkbox"  name=""></th>
               <th>' . $stt++ . '</th>
-              <th>' . $user->name . '</th> 
-              <th>' . $user->address . '</th> 
+              <th>' . $user->name . '</th>
+              <th>' . $user->address . '</th>
               <th>' . $user->email . '</th>
               <th scope="col"><a href='.route('edit.user',['id'=>$user->id]).'><i class="fa fa-edit tacvu"></i></a>
               <a href="'.route('delete.user',['id'=>$user->id]).'" onclick="return confirm(\bạn có chắc muốn xóa không ?\')"><i class="fa fa-trash tacvu" style="color: red"></i></a></th>

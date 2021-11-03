@@ -32,7 +32,7 @@
                             </thead>
                             <tbody>
                             <?php $stt =1 ?>
-            @foreach($users as $user)
+                @foreach($users as $user)
                             <tr>
                                 <th scope="col">{{$stt++}}</th>
                                 <th scope="col">{{substr($user->name,0,70)}}</th>

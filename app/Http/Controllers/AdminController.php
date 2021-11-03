@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
-use App\Events\Controllers;
 use App\Listeners\storeUserLoginHistory;
-use App\Events\LoginHistory;
-use App\Models\LogHistory;
+use App\Events\logHistory;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+
+
 
 class AdminController extends Controller
 {
@@ -32,8 +32,8 @@ class AdminController extends Controller
            'password'=>$request->password
        ],$remember)){
 
-           $loginHistory = new LogHistory();
-           event(new LoginHistory($loginHistory));
+           $loginHistory = new \App\Models\LogHistory();
+           event(new logHistory($loginHistory));
            return redirect()->to('home');
        }
        else{

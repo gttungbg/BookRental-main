@@ -83,10 +83,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('books.index')}}" class="nav-link">
+                    <a href="{{route('user.index')}}" class="nav-link">
                         <i class="fas fa-torah"></i>
                         <p>
-                            Danh sách mươn
+                           User manager
                         </p>
                     </a>
                 </li>
